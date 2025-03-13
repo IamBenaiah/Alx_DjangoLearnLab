@@ -1,27 +1,14 @@
-from django.shortcuts import render
-
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from .models import Book
 from .serializers import BookSerializer
 
-@api_view(['GET'])
-def book_list(request):
 class BookList(ListAPIView):
-    books = Book.objects.all()
-    serializer = BookSerializer(books, many=True)
-    return Response(serializer.data)
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
-    if request.method == 'POST':
-        serializer = BookSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
-
-from django.http import JsonResponse
-
-def home(request):
-    return JsonResponse({"message": "API is working!"})
-
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=201)  # Ensure this is inside a function
