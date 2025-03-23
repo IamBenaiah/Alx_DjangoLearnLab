@@ -1,12 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include  # Import `include`
-from .views import home  # Import the home view
+from django.urls import path, include
 
 urlpatterns = [
-    path('', home, name='home'),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # Ensure this line exists
+    path('api/', include('api.urls')),
 ]
+
 
 """
 URL configuration for api_project project.
