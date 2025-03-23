@@ -44,12 +44,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',  # Only return JSON
-    ],
-}  # <--- Make sure this closing bracket is there!
+ ],
 
+}  
 
 
 MIDDLEWARE = [
