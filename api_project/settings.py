@@ -65,8 +65,8 @@ ROOT_URLCONF = 'api_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': False,
+        'DIRS': [],  # you can leave this empty for now
+        'APP_DIRS': True,  # IMPORTANT!
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -77,6 +77,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'api_project.wsgi.application'
 
